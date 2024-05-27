@@ -1,10 +1,15 @@
 import React from 'react'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { AnimeListPage } from './pages/AnimeListPage'
 
-export default function App() {
+const App: React.FC = () => {
   return (
-    <main>
-      React ⚛️ + Vite ⚡ 
-    </main>
+    <Router>
+      <Routes>
+        <Route path='/' element={<AnimeListPage />} />
+      </Routes>
+    </Router>
   )
 }
+
+export default App
