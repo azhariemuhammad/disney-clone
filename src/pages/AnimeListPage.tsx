@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Box, Center, Spinner, Text } from '@chakra-ui/react'
 import { AnimeList } from '../components/AnimeList'
