@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Box, Button, Spinner, Text } from '@chakra-ui/react'
-// import SearchBar from '../components/SearchBar';
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Box, Button, Center, Flex, Spinner, Text } from '@chakra-ui/react'
 import { AnimeList } from '../components/AnimeList'
+import { SearchBar } from '../components/SearchBar'
+import { PaginationButtons } from '../components/PaginationButtons'
 
 interface Anime {
   mal_id: number
@@ -21,17 +23,23 @@ export const AnimeListPage = () => {
   const [page, setPage] = useState<number>(1)
   const [query, setQuery] = useState<string>('')
 
-  const { data, error, isLoading } = useQuery({ queryKey: [{ page }], queryFn: () => fetchAnimes(query, page) })
-  console.log({ data, error, page })
+  const { data, error, isLoading } = useQuery({ queryKey: [{ page, query }], queryFn: () => fetchAnimes(query, page) })
+  const paginationData = data?.pagination
 
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery)
     setPage(1)
   }
 
+  const handlePageChange = (pageNumber: number) => {
+    setPage(pageNumber)
+  }
+
   return (
-    <Box p='4' m='8'>
-      {/* <SearchBar onSearch={handleSearch} /> */}
+    <Box p='4' m='8' minH='300px'>
+      <Center>
+        <SearchBar onSearch={handleSearch} />
+      </Center>
       {isLoading ? (
         <Box display='flex' justifyContent='center' mt='4'>
           <Spinner size='xl' />
@@ -43,12 +51,14 @@ export const AnimeListPage = () => {
       ) : (
         <AnimeList animes={data.data || []} />
       )}
-      <Box display='flex' justifyContent='space-between' mt='4'>
-        <Button onClick={() => setPage(old => Math.max(old - 1, 1))} isDisabled={page === 1}>
-          Previous
-        </Button>
-        <Button onClick={() => setPage(old => (data?.data.length ? old + 1 : old))}>Next</Button>
-      </Box>
+      {paginationData && (
+        <PaginationButtons
+          currentPage={paginationData.current_page}
+          lastVisiblePage={paginationData.last_visible_page}
+          hasNextPage={paginationData.has_next_page}
+          onPageChange={handlePageChange}
+        />
+      )}
     </Box>
   )
 }
