@@ -1,24 +1,7 @@
 import { useParams, Link as RouterLink } from 'react-router-dom'
 import { Box, Heading, Text, Image, Spinner, Link, Button } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-
-interface Anime {
-  mal_id: number
-  images: {
-    jpg: {
-      image_url: string
-    }
-    webp: {
-      image_url: string
-    }
-  }
-  title: string
-  synopsis: string
-  episodes: number
-  score: number
-  rating: string
-  url: string
-}
+import { Anime } from '../types'
 
 const fetchAnime = async (id: string): Promise<{ data: Anime }> => {
   const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`)

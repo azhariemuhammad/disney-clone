@@ -1,20 +1,7 @@
 import React from 'react'
 import { AnimeCard } from './AnimeCard'
 import { Box, SimpleGrid, Text } from '@chakra-ui/react'
-
-interface Anime {
-  mal_id: number
-  images: {
-    jpg: {
-      image_url: string
-    }
-    webp: {
-      image_url: string
-    }
-  }
-  title: string
-  synopsis: string
-}
+import { Anime } from '../types'
 
 interface AnimeListProps {
   animes: Anime[]

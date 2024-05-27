@@ -4,20 +4,7 @@ import { Box, Center, Spinner, Text } from '@chakra-ui/react'
 import { AnimeList } from '../components/AnimeList'
 import { SearchBar } from '../components/SearchBar'
 import { PaginationButtons } from '../components/PaginationButtons'
-
-interface Anime {
-  mal_id: number
-  images: {
-    jpg: {
-      image_url: string
-    }
-    webp: {
-      image_url: string
-    }
-  }
-  title: string
-  synopsis: string
-}
+import { Anime } from '../types'
 
 interface PaginationData {
   last_visible_page: number

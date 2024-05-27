@@ -3,7 +3,7 @@ import { Box, Heading } from '@chakra-ui/react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { routes } from './routes'
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
       <Box p='4'>
