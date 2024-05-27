@@ -21,7 +21,7 @@ interface AnimeCardProps {
 export const AnimeCard = ({ anime }: AnimeCardProps) => {
   return (
     <Box borderWidth='1px' borderRadius='lg' overflow='hidden' p='4' boxShadow='md'>
-      <Image src={anime.images.webp.image_url} alt={anime.title} mb='4' w='full' h='300px' />
+      <Image src={anime.images.webp.image_url} alt={anime.title} mb='4' w='full' h='300px' borderRadius='sm' />
       <Heading as='h3' size='md' mb='2'>
         {anime.title}
       </Heading>

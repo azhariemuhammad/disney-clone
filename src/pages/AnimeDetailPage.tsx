@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, Link as RouterLink, useNavigate } from 'react-router-dom'
+import { useParams, Link as RouterLink } from 'react-router-dom'
 import { Box, Heading, Text, Image, Spinner, Link, Button } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 
@@ -17,11 +16,11 @@ interface Anime {
   synopsis: string
   episodes: number
   score: number
-  rated: string
+  rating: string
   url: string
 }
 
-const fetchAnime = async (id: string): Promise<Anime> => {
+const fetchAnime = async (id: string): Promise<{ data: Anime }> => {
   const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`)
   const data = await response.json()
   return data
@@ -32,10 +31,11 @@ export const AnimeDetailPage = () => {
 
   const { data, isLoading } = useQuery({ queryKey: [{ id }], queryFn: () => fetchAnime(id || '') })
   const anime = data?.data
+  const { title, synopsis, episodes, score, rating, url } = anime || {}
 
   if (isLoading) {
     return (
-      <Box display='flex' justifyContent='center' mt='4'>
+      <Box display='flex' justifyContent='center' mt='12'>
         <Spinner size='xl' />
       </Box>
     )
@@ -55,24 +55,24 @@ export const AnimeDetailPage = () => {
         Back
       </Button>
       <Heading as='h2' size='xl' mb='4'>
-        {anime.title}
+        {title}
       </Heading>
       <Box display='flex' alignItems='center' justifyContent='center' mb='4'>
-        <Image src={anime.images.webp.image_url} alt={anime.title} maxWidth='200px' />
+        <Image src={anime.images.webp.image_url} alt={title} maxWidth='200px' />
       </Box>
       <Text fontSize='lg' mb='2'>
-        Synopsis: {anime.synopsis}
+        Synopsis: {synopsis}
       </Text>
       <Text fontSize='lg' mb='2'>
-        Episodes: {anime.episodes}
+        Episodes: {episodes}
       </Text>
       <Text fontSize='lg' mb='2'>
-        Score: {anime.score}
+        Score: {score}
       </Text>
       <Text fontSize='lg' mb='2'>
-        Rated: {anime.rated}
+        rating: {rating}
       </Text>
-      <Link href={anime.url} isExternal color='teal.500' fontWeight='bold'>
+      <Link href={url} isExternal color='teal.500' fontWeight='bold'>
         More info
       </Link>
     </Box>

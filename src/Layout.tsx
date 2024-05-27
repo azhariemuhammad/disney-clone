@@ -1,11 +1,11 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { Box } from '@chakra-ui/react'
 
 function Layout() {
   return (
-    <div>
+    <Box maxW='1200px' mx='auto' px='4'>
       <Outlet />
-    </div>
+    </Box>
   )
 }
 

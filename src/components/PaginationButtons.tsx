@@ -45,7 +45,7 @@ export const PaginationButtons = ({
   }
 
   return (
-    <Flex justifyContent='flex-end' mt='4' gap={2}>
+    <Flex justifyContent='flex-end' mt='12' gap={2}>
       {renderPageButtons()}
     </Flex>
   )
