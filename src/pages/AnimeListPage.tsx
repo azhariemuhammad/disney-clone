@@ -40,7 +40,7 @@ export const AnimeListPage = () => {
   }
 
   return (
-    <Box p='4' m='8' minH='300px'>
+    <Box p={['0', '4']} m={['0', '8']} minH='300px'>
       <Center>
         <SearchBar onSearch={handleSearch} />
       </Center>
