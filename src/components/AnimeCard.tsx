@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { Box, Image, Heading, Text, Link } from '@chakra-ui/react'
+import { Box, Heading, Text, Link } from '@chakra-ui/react'
 import { Anime } from '../types'
 import LazyImage from './LazyImage'
 

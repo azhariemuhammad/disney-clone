@@ -1,4 +1,3 @@
-// useLazyLoadImage.ts
 import { useEffect, useRef } from 'react'
 
 const useLazyLoadImage = () => {
