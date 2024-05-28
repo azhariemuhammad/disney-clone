@@ -1,6 +1,7 @@
 # amartha-awesome-anime
 
 Simple anime app built using React + Typescript + Vite + Chakra UI
+Visit the site [awesome-anime](https://awesome-anime-amartha.netlify.app/)
 
 ## Features
 
