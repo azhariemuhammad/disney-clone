@@ -4,7 +4,7 @@ import Layout from '../Layout'
 import { MovieListPage } from '../pages/MovieListPage'
 import { MovieDetailPage } from '../pages/MovieDetailPage'
 import { WatchListPage } from '../pages/WatchListPage'
-import { TVseriesDetailPage } from '../components/TVseriesDetailPage'
+import { TVseriesDetailPage } from '../pages/TVseriesDetailPage'
 
 export const routes = (
   <Routes>

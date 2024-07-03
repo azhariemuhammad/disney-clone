@@ -35,16 +35,16 @@ const MinusIcon = () => (
 )
 
 type WatchListBtnProps = {
-  onClick: () => void
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   isWatchedList: boolean
 }
 
 export const WatchListButton = ({ onClick, isWatchedList }: WatchListBtnProps) => {
   const [isWatched, setIsWatched] = useState(isWatchedList)
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setIsWatched(!isWatched)
-    onClick()
+    onClick(e)
   }
 
   return (

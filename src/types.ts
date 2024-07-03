@@ -95,7 +95,19 @@ export interface MovieDetail {
   vote_count: number
 }
 
-type Season = {
+type Episode = {
+  air_date: string
+  episode_number: number
+  id: number
+  name: string
+  overview: string
+  production_code: string
+  season_number: number
+  still_path: string
+  runtime: number
+}
+
+export type Season = {
   id: number
   name: string
   overview: string
@@ -103,6 +115,7 @@ type Season = {
   episode_count: number
   poster_path: string
   season_number: number
+  episodes: Array<Episode>
 }
 export interface TVSeriesDetail {
   id: number
@@ -116,4 +129,7 @@ export interface TVSeriesDetail {
   seasons: Array<Season>
   duration: number
   episode_run_time: Array<number>
+  genres: Array<Genre>
 }
+
+// export type Seasons = Array<Season>

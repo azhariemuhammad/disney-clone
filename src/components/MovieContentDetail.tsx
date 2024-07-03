@@ -40,6 +40,7 @@ const TVSeriesContent = ({ children, tvSeries }: TVSeriesContentProps) => {
         <p className='hero-date'>{tvSeries.number_of_episodes} Episodes</p>
       </div>
       <p>Playback time: {tvSeries.episode_run_time?.[0]} Minutes</p>
+      <p className='hero-genres'> {tvSeries.genres.map(genre => genre.name).join(', ')}</p>
       {children}
     </div>
   )

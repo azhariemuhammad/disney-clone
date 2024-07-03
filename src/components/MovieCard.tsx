@@ -11,33 +11,33 @@ interface MovieCardProps {
 }
 
 export const MovieCard = ({ movie, isTvSeries }: MovieCardProps) => {
+  const { id, title, poster_path, overview, name = '' } = movie
   const { addToWatchList, removeFromWatchList, checkIfWatched } = useWatchList()
   const isWatched = checkIfWatched(String(movie.id))
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+    isWatched
+      ? removeFromWatchList(String(movie.id))
+      : addToWatchList({
+          id,
+          title: title || name,
+          poster_path,
+          overview,
+        })
+  }
   return (
-    <Link to={isTvSeries ? `/tv/${movie.id}` : `/movie/${movie.id}`}>
-      <div className='movie-card'>
+    <div className='movie-card'>
+      <Link to={isTvSeries ? `/tv/${id}` : `/movie/${id}`}>
         <div className='aspect-ratio'>
-          <LazyImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+          <LazyImage src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
         </div>
         <div className='movie-details'>
-          <h3>{movie.title || movie.name}</h3>
-          <p className='overview truncate'>{movie.overview}</p>
-          <WatchListButton
-            onClick={() =>
-              isWatched
-                ? removeFromWatchList(String(movie.id))
-                : addToWatchList({
-                    id: movie.id,
-                    title: movie.title,
-                    poster_path: movie.poster_path,
-                    overview: movie.overview,
-                  })
-            }
-            isWatchedList={isWatched}
-          />
+          <h3>{title || name}</h3>
+          <p className='overview truncate'>{overview}</p>
+          <WatchListButton onClick={e => handleClick(e)} isWatchedList={isWatched} />
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
