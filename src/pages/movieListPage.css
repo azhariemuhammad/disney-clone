@@ -1,23 +1,4 @@
 
-.container {
-    padding: 0;
-    margin: 0;
-    min-height: 300px;
-  }
-  
-  .container-sm-padding {
-    padding: 16px;
-  }
-  
-  .container-sm-margin {
-    margin: 32px;
-  }
-  
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   
   .spinner {
     display: flex;
@@ -60,10 +41,3 @@
   
   
 
-.top-rated {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    padding: 16px 0;
-}

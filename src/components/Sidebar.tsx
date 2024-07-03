@@ -1,4 +1,6 @@
+import { Link, matchRoutes, useLocation } from 'react-router-dom'
 import './styles/Sidebar.css'
+import { routes } from '../routes'
 
 const SearchIcon = () => {
   return (
@@ -69,15 +71,21 @@ export const Sidebar = () => {
     <div className='sidebar'>
       <nav>
         <ul>
-          <li>
-            <SearchIcon />
-          </li>
-          <li>
-            <HomeIcon />
-          </li>
-          <li>
-            <WatchlistIcon />
-          </li>
+          <Link to='/'>
+            <li>
+              <SearchIcon />
+            </li>
+          </Link>
+          <Link to='/'>
+            <li>
+              <HomeIcon />
+            </li>
+          </Link>
+          <Link to='/watchlist'>
+            <li>
+              <WatchlistIcon />
+            </li>
+          </Link>
         </ul>
       </nav>
     </div>

@@ -1,3 +1,4 @@
+import useWatchList from '../hooks/useWatchList'
 import { Movie } from '../types'
 import LazyImage from './LazyImage'
 import { WatchListButton } from './WatchlistBtn'
@@ -8,6 +9,9 @@ interface MovieCardProps {
 }
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
+  const { addToWatchList, removeFromWatchList, checkIfWatched } = useWatchList()
+  const isWatched = checkIfWatched(String(movie.id))
+
   return (
     <div className='movie-card'>
       <div className='aspect-ratio'>
@@ -16,7 +20,19 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
       <div className='movie-details'>
         <h3>{movie.title || movie.name}</h3>
         <p className='overview truncate'>{movie.overview}</p>
-        <WatchListButton onClick={() => console.log('clicked')} />
+        <WatchListButton
+          onClick={() =>
+            isWatched
+              ? removeFromWatchList(String(movie.id))
+              : addToWatchList({
+                  id: movie.id,
+                  title: movie.title,
+                  poster_path: movie.poster_path,
+                  overview: movie.overview,
+                })
+          }
+          isWatchedList={isWatched}
+        />
       </div>
     </div>
   )

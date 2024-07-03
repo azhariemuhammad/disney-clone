@@ -1,3 +1,4 @@
+import useWatchList from '../hooks/useWatchList'
 import { Movie } from '../types'
 import { Slider } from './Slider'
 import './styles/Hero.css'
@@ -8,6 +9,8 @@ interface MovieHero {
 }
 
 export const Hero = ({ movies }: MovieHero) => {
+  const { addToWatchList, removeFromWatchList, checkIfWatched } = useWatchList()
+
   return (
     <div className='hero-slide'>
       <Slider width='1200px'>
@@ -19,7 +22,19 @@ export const Hero = ({ movies }: MovieHero) => {
             <div className='hero-content'>
               <h1>{movie.title}</h1>
               <p className='truncate'>{movie.overview}</p>
-              <WatchListButton onClick={() => console.log('clicked')} />
+              <WatchListButton
+                onClick={() =>
+                  checkIfWatched(String(movie.id))
+                    ? removeFromWatchList(String(movie.id))
+                    : addToWatchList({
+                        id: movie.id,
+                        title: movie.title,
+                        poster_path: movie.poster_path,
+                        overview: movie.overview,
+                      })
+                }
+                isWatchedList={checkIfWatched(String(movie.id))}
+              />
             </div>
           </section>
         ))}

@@ -9,9 +9,9 @@ const App = () => {
   return (
     <Router>
       <Box p='4'>
-        <Heading as='h1' size='xl' textAlign='center' mb='4'>
+        {/* <Heading as='h1' size='xl' textAlign='center' mb='4'>
           MOVIE DB
-        </Heading>
+        </Heading> */}
         {routes}
         <Sidebar />
       </Box>
