@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Heading } from '@chakra-ui/react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { routes } from './routes'
+import './styles.css'
 
 const App = () => {
   return (

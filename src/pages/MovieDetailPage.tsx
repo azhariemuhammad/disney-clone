@@ -9,7 +9,7 @@ const fetchAnime = async (id: string): Promise<{ data: Anime }> => {
   return data
 }
 
-export const AnimeDetailPage = () => {
+export const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>()
 
   const { data, isLoading } = useQuery({ queryKey: [{ id }], queryFn: () => fetchAnime(id || '') })

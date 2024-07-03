@@ -12,7 +12,7 @@ interface LazyImageProps {
 const LazyImage = ({ src, alt, sx }: LazyImageProps) => {
   const imgRef = useLazyLoadImage()
 
-  return <Image ref={imgRef} data-src={src} alt={alt} sx={sx} className='lazy' />
+  return <Image ref={imgRef} objectFit='cover' data-src={src} alt={alt} sx={sx} className='lazy' />
 }
 
 export default LazyImage

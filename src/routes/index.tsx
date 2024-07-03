@@ -1,16 +1,15 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Layout from '../Layout'
 
-import { AnimeListPage } from '../pages/AnimeListPage'
-import { AnimeDetailPage } from '../pages/AnimeDetailPage'
+import { MovieListPage } from '../pages/MovieListPage'
+import { MovieDetailPage } from '../pages/MovieDetailPage'
 
 export const routes = (
   <Routes>
     <Route path='/' element={<Layout />}>
-      <Route index element={<AnimeListPage />} />
-      <Route element={<AnimeListPage />} />
-      <Route path='/anime/:id' element={<AnimeDetailPage />} />
+      <Route index element={<MovieListPage />} />
+      <Route element={<MovieDetailPage />} />
+      <Route path='/anime/:id' element={<MovieDetailPage />} />
     </Route>
   </Routes>
 )

@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react'
 
 function Layout() {
   return (
-    <Box maxW='1200px' mx={['none', 'auto']} px='4'>
+    <Box maxW='1400px' mx={['none', 'auto']} px='4'>
       <Outlet />
     </Box>
   )

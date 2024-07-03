@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Box, Center, Spinner, Text } from '@chakra-ui/react'
-import { AnimeList } from '../components/AnimeList'
+import { List } from '../components/MovieList'
 import { SearchBar } from '../components/SearchBar'
 import { PaginationButtons } from '../components/PaginationButtons'
-import { Anime } from '../types'
+import { MovieList } from '../types'
+import { Hero } from '../components/Hero'
+import { tmdbApiKey } from '../config'
 
 interface PaginationData {
   last_visible_page: number
@@ -17,18 +19,25 @@ interface PaginationData {
   }
 }
 
-const fetchAnimes = async (query: string, page: number): Promise<{ data: Anime[]; pagination: PaginationData }> => {
-  const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&page=${page}`)
+const url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}`
+
+const fetchMovies = async (query: string, page: number): Promise<MovieList> => {
+  const response = await fetch(
+    `${url}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
+  )
   const data = await response.json()
+  console.log({ data2: data })
   return data
 }
 
-export const AnimeListPage = () => {
+export const MovieListPage = () => {
   const [page, setPage] = useState<number>(1)
   const [query, setQuery] = useState<string>('')
 
-  const { data, error, isLoading } = useQuery({ queryKey: [{ page, query }], queryFn: () => fetchAnimes(query, page) })
-  const paginationData = data?.pagination
+  const { data, error, isLoading } = useQuery({ queryKey: [{ page, query }], queryFn: () => fetchMovies(query, page) })
+
+  console.log({ data: data?.results, error, isLoading })
+  // const paginationData = data?.pagination
 
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery)
@@ -53,16 +62,21 @@ export const AnimeListPage = () => {
           Error fetching data
         </Text>
       ) : (
-        <AnimeList animes={data?.data || []} />
+        <>
+          <Box width='100%' height='100%' position='relative' overflow='hidden' p={['0', '4']} m={['0', '8']}>
+            <Hero movies={data?.results || {}} />
+          </Box>
+          <List movies={data?.results || []} />
+        </>
       )}
-      {paginationData && (
+      {/* {paginationData && (
         <PaginationButtons
           currentPage={paginationData.current_page}
           lastVisiblePage={paginationData.last_visible_page}
           hasNextPage={paginationData.has_next_page}
           onPageChange={handlePageChange}
         />
-      )}
+      )} */}
     </Box>
   )
 }
