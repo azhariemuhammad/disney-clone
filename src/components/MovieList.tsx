@@ -4,9 +4,10 @@ import './styles/MovieList.css'
 
 interface MovieListProps {
   movies: Array<Movie>
+  isTvSeries?: boolean
 }
 
-export const List = ({ movies }: MovieListProps) => {
+export const List = ({ movies, isTvSeries }: MovieListProps) => {
   if (movies.length === 0) {
     return (
       <div className='container'>
@@ -18,7 +19,7 @@ export const List = ({ movies }: MovieListProps) => {
   return (
     <div className='grid-container'>
       {movies.map(movie => (
-        <MovieCard key={movie.id} movie={movie} />
+        <MovieCard isTvSeries={isTvSeries} key={movie.id} movie={movie} />
       ))}
     </div>
   )

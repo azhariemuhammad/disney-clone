@@ -63,8 +63,6 @@ export const MovieListPage = () => {
   const moviesError = moviesQuery?.error
   const tvSeries = tvSeriesQuery?.data?.results || []
 
-  console.log({ moviesQuery, tvSeriesQuery })
-
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery)
     setPage(1)
@@ -92,7 +90,7 @@ export const MovieListPage = () => {
             </div>
             <div className='top-rated'>
               <h2>Top Rated TV Series</h2>
-              <List movies={tvSeries.slice(0, 8)} />
+              <List movies={tvSeries.slice(0, 8)} isTvSeries />
             </div>
           </section>
         </>

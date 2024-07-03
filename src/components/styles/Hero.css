@@ -1,5 +1,5 @@
 .hero-slide {
-  width: 1200px;
+  width: 100%;
 }
 
 .hero-slide section {
@@ -26,8 +26,34 @@
 .hero-content {
   position: absolute;
   bottom: 0;  
-  margin-bottom: 32px;    
   width: 100%;
-  padding: 0 16px;              
+  padding: 0 16px 32px 16px;              
   width: 50%;
+}
+
+
+.hero-genres {
+  margin-bottom: 32px;
+  font-size: 1.2rem;
+  color: #c5ccd8;
+  font-weight: 600;
+  width: max-content;
+}
+
+.hero-date {
+  padding: 24px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #c5ccd8;
+} 
+
+.bg-transparant {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  align-items: center;  
+  gap: 8px;
 }

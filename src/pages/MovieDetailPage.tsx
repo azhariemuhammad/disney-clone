@@ -1,10 +1,15 @@
 import { useParams, Link as RouterLink } from 'react-router-dom'
-import { Box, Heading, Text, Image, Spinner, Link, Button } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { Anime } from '../types'
+import { Anime, Movie, MovieDetail, MovieList } from '../types'
+import { tmdbApiKey } from '../config'
+import { Hero } from '../components/Hero'
+import '../components/styles/Hero.css'
 
-const fetchAnime = async (id: string): Promise<{ data: Anime }> => {
-  const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`)
+import useWatchList from '../hooks/useWatchList'
+import { MovieContentDetail } from '../components/MovieContentDetail'
+
+const fetchMovieById = async (id: string): Promise<MovieDetail> => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}`)
   const data = await response.json()
   return data
 }
@@ -12,52 +17,17 @@ const fetchAnime = async (id: string): Promise<{ data: Anime }> => {
 export const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>()
 
-  const { data, isLoading } = useQuery({ queryKey: [{ id }], queryFn: () => fetchAnime(id || '') })
-  const anime = data?.data
-  const { title, synopsis, episodes, score, rating, url } = anime || {}
-
-  if (isLoading) {
-    return (
-      <Box display='flex' justifyContent='center' mt='12'>
-        <Spinner size='xl' />
-      </Box>
-    )
-  }
-
-  if (!anime) {
-    return (
-      <Box textAlign='center' mt='4'>
-        <Text fontSize='xl'>Anime not found.</Text>
-      </Box>
-    )
-  }
+  const { data, isLoading } = useQuery({ queryKey: [{ id }], queryFn: () => fetchMovieById(id || '') })
 
   return (
-    <Box p='4'>
-      <Button as={RouterLink} to='/' colorScheme='teal' variant='outline' mb='4'>
-        Back
-      </Button>
-      <Heading as='h2' size='xl' mb='4'>
-        {title}
-      </Heading>
-      <Box display='flex' alignItems='center' justifyContent='center' mb='4'>
-        <Image src={anime.images.webp.image_url} alt={title} maxWidth='200px' />
-      </Box>
-      <Text fontSize='lg' mb='2'>
-        Synopsis: {synopsis}
-      </Text>
-      <Text fontSize='lg' mb='2'>
-        Episodes: {episodes}
-      </Text>
-      <Text fontSize='lg' mb='2'>
-        Score: {score}
-      </Text>
-      <Text fontSize='lg' mb='2'>
-        rating: {rating}
-      </Text>
-      <Link href={url} isExternal color='teal.500' fontWeight='bold'>
-        More info
-      </Link>
-    </Box>
+    <div className='container container-sm-padding container-sm-margin'>
+      {isLoading ? (
+        <div className='spinner'></div>
+      ) : data ? (
+        <MovieContentDetail movie={data} />
+      ) : (
+        <p className='error-text'>Error fetching data</p>
+      )}
+    </div>
   )
 }
