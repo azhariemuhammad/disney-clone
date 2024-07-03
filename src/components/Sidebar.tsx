@@ -1,6 +1,10 @@
 import { Link, matchRoutes, useLocation } from 'react-router-dom'
 import './styles/Sidebar.css'
 import { routes } from '../routes'
+import { useState } from 'react'
+import { Modal } from '@chakra-ui/react'
+import { useAtom } from 'jotai'
+import { modalAtom } from '../atom/modalAtom'
 
 const SearchIcon = () => {
   return (
@@ -67,27 +71,29 @@ const WatchlistIcon = () => {
 }
 
 export const Sidebar = () => {
+  const [isSearchOpen, setIsSearchOpen] = useAtom(modalAtom)
+
   return (
-    <div className='sidebar'>
-      <nav>
-        <ul>
-          <Link to='/'>
-            <li>
+    <>
+      <div className='sidebar'>
+        <nav>
+          <ul>
+            <li onClick={() => setIsSearchOpen(!isSearchOpen)}>
               <SearchIcon />
             </li>
-          </Link>
-          <Link to='/'>
-            <li>
-              <HomeIcon />
-            </li>
-          </Link>
-          <Link to='/watchlist'>
-            <li>
-              <WatchlistIcon />
-            </li>
-          </Link>
-        </ul>
-      </nav>
-    </div>
+            <Link to='/'>
+              <li>
+                <HomeIcon />
+              </li>
+            </Link>
+            <Link to='/watchlist'>
+              <li>
+                <WatchlistIcon />
+              </li>
+            </Link>
+          </ul>
+        </nav>
+      </div>
+    </>
   )
 }

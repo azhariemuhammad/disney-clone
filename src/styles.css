@@ -1,8 +1,7 @@
-/* styles.css */
+
 #root {
   background-color: #00050d;
   min-height: 100vh;
-  /* height: 100vh; */
 }
 
 .container {
@@ -47,7 +46,7 @@ h2 {
 .truncate {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Number of lines to show */
+  -webkit-line-clamp: 3; /* Number of lines to show */
   -webkit-box-orient: vertical;
 }
 

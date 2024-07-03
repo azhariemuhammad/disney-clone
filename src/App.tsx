@@ -4,8 +4,13 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { routes } from './routes'
 import './styles.css'
 import { Sidebar } from './components/Sidebar'
+import { Modal } from './components/ModalSearch'
+import { useAtom } from 'jotai'
+import { modalAtom } from './atom/modalAtom'
 
 const App = () => {
+  const [isSearchOpen, setIsSearchOpen] = useAtom(modalAtom)
+
   return (
     <Router>
       <Box p='4'>
@@ -14,6 +19,7 @@ const App = () => {
         </Heading> */}
         {routes}
         <Sidebar />
+        <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       </Box>
     </Router>
   )
