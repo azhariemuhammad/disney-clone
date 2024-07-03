@@ -1,6 +1,6 @@
 import React from 'react'
-import { Image } from '@chakra-ui/react'
 import useLazyLoadImage from '../hooks/useLazyLoadImage'
+import './styles/LazyImage.css'
 
 interface LazyImageProps {
   src: string
@@ -9,10 +9,10 @@ interface LazyImageProps {
   sx?: React.CSSProperties
 }
 
-const LazyImage = ({ src, alt, sx }: LazyImageProps) => {
+const LazyImage = ({ src, alt, sx, className }: LazyImageProps) => {
   const imgRef = useLazyLoadImage()
 
-  return <Image ref={imgRef} objectFit='cover' data-src={src} alt={alt} sx={sx} className='lazy' />
+  return <img ref={imgRef} data-src={src} alt={alt} style={sx} className={`lazy ${className || ''}`} />
 }
 
 export default LazyImage

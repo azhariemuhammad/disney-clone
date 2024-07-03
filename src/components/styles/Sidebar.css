@@ -1,0 +1,31 @@
+/* Sidebar.css */
+
+
+.sidebar {
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+    padding: 8px 0; 
+  }
+  
+  .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    margin-bottom: 40px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .sidebar nav ul li:hover {
+    background-color: #b3b3b3;
+  }
+  

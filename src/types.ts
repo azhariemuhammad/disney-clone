@@ -21,7 +21,7 @@ export interface Anime {
 
 export interface MovieList {
   page: number
-  results: Movie[]
+  results: Array<Movie>
   total_results: number
   total_pages: number
 }
@@ -41,4 +41,5 @@ export interface Movie {
   video: boolean
   vote_average: number
   vote_count: number
+  name: string
 }

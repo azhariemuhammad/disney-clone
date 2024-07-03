@@ -1,0 +1,15 @@
+.lazy {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.lazy-loading {
+  filter: blur(10px);
+  transition: filter 0.3s;
+}
+
+.lazy-loaded {
+  filter: blur(0);
+}
