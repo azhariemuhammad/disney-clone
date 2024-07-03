@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles/ModalSearch.css'
 import { Search, useNavigate } from 'react-router-dom'
+import { useDebounce } from '../hooks/useDebounce'
 
 type ModalProps = {
   isOpen: boolean
@@ -51,22 +52,33 @@ export const Modal = ({ isOpen, onClose }: ModalProps) => {
   )
 }
 
-const SearchBar = ({ onClose, onKeyDown }: SearchBarProps) => {
+export const SearchBar = ({ onClose, onKeyDown }: SearchBarProps) => {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
+  console.log({ query })
+  const queryDebounced = useDebounce(query, 500)
 
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    onClose()
-    navigate(`/search/${query}`)
-  }
+  //   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault()
+  //     onClose()
+  //     navigate(`/search?query=${query}`)
+  //   }
+
+  useEffect(() => {
+    console.log({ queryDebounced })
+    if (queryDebounced) {
+      navigate(`/search?query=${queryDebounced}`)
+    }
+  }, [queryDebounced])
 
   return (
-    <form onSubmit={handleSearch} className='search-form' onKeyDown={onKeyDown}>
+    <form className='search-form' onKeyDown={onKeyDown}>
       <input
         type='text'
         value={query}
-        onChange={e => setQuery(e.target.value)}
+        onChange={e => {
+          setQuery(e.target.value)
+        }}
         placeholder='Search...'
         className='search-input'
       />

@@ -78,9 +78,11 @@ export const Sidebar = () => {
       <div className='sidebar'>
         <nav>
           <ul>
-            <li onClick={() => setIsSearchOpen(!isSearchOpen)}>
-              <SearchIcon />
-            </li>
+            <Link to='/search'>
+              <li>
+                <SearchIcon />
+              </li>
+            </Link>
             <Link to='/'>
               <li>
                 <HomeIcon />

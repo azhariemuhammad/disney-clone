@@ -48,11 +48,11 @@ export const MovieListPage = () => {
             <Hero movies={movies || {}} />
           </div>
           <section>
-            <div className='top-rated'>
+            <div className='movie-list'>
               <h2>Top Rated Movies</h2>
               <List movies={movies.slice(0, 8)} />
             </div>
-            <div className='top-rated'>
+            <div className='movie-list'>
               <h2>Top Rated TV Series</h2>
               <List movies={tvSeries.slice(0, 8)} isTvSeries />
             </div>

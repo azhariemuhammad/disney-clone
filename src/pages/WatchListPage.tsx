@@ -7,7 +7,7 @@ export const WatchListPage = () => {
 
   return (
     <div className='container container-sm-padding container-sm-margin'>
-      <div className='top-rated'>
+      <div className='movie-list'>
         <h2>Watchlist</h2>
         <List movies={watchList} />
       </div>

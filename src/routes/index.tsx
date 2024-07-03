@@ -15,7 +15,7 @@ export const routes = (
       <Route path='/movie/:id' element={<MovieDetailPage />} />
       <Route path='/tv/:id' element={<TVseriesDetailPage />} />
       <Route path='/watchlist' element={<WatchListPage />} />
-      <Route path='/search/:query' element={<SearchResultsPage />} />
+      <Route path='/search' element={<SearchResultsPage />} />
     </Route>
   </Routes>
 )

@@ -43,6 +43,13 @@ h2 {
   font-weight: 700;
 }
 
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: #fff;
+  font-weight: 700;
+}
+
 .truncate {
   overflow: hidden;
   display: -webkit-box;
@@ -55,7 +62,8 @@ h2 {
   align-items: center;
 }
 
-.top-rated {
+
+.movie-list {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -108,3 +116,10 @@ h2 {
   object-fit: cover;
   border-radius: 4px;
 }
+.text-truncate-two-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+}
+ 

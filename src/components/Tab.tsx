@@ -22,12 +22,14 @@ export const Tabs = ({ children }: TabsProps) => {
       <div className='tab-buttons container-center'>
         {React.Children.map(children, (child, index) => (
           <button
-            className={`tab-button ${index === activeTab ? 'active' : ''}`}
+            className={`tab-button ${index === activeTab ? 'active' : ''} text-truncate-two-lines`}
             onClick={() => {
               handleTabClick(index)
+              // @ts-ignore
               child.props.onClick && child.props.onClick()
             }}
           >
+            {/* @ts-ignore */}
             {child.props.label}
           </button>
         ))}
