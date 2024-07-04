@@ -24,16 +24,15 @@ export const TVseriesDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const [selectedSeason, setSelectedSeason] = useState(0)
 
-  const [{ data: tvSeries, isLoading }, { data: seasons, error: seasonsError, isLoading: isLoadingSeasons }] =
-    useQueries({
-      queries: [
-        { queryKey: [{ id }], queryFn: () => fetchTVseriesById(id || '') },
-        {
-          queryKey: [{ id, seasonNumber: selectedSeason }],
-          queryFn: () => fetchTVSeriesSeasons(id || '', selectedSeason),
-        },
-      ],
-    })
+  const [{ data: tvSeries, isLoading }, { data: seasons }] = useQueries({
+    queries: [
+      { queryKey: [{ id }], queryFn: () => fetchTVseriesById(id || '') },
+      {
+        queryKey: [{ id, seasonNumber: selectedSeason }],
+        queryFn: () => fetchTVSeriesSeasons(id || '', selectedSeason),
+      },
+    ],
+  })
 
   const seasonsData = tvSeries?.seasons
   const episodes = seasons?.episodes
@@ -60,10 +59,11 @@ export const TVseriesDetailPage = () => {
                       <LazyImage
                         src={`https://image.tmdb.org/t/p/w500${episode.still_path}`}
                         alt={episode.name}
+                        sx={{ width: '100%' }}
                       ></LazyImage>
                       <div>
                         <h2>{episode.name}</h2>
-                        <p>{episode.air_date}</p>
+                        <p>Air date: {episode.air_date}</p>
                         <p>Duration: {episode.runtime} minutes</p>
                         <p>
                           <span>Season {episode.season_number}</span> <span>Episode {episode.episode_number}</span>

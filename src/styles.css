@@ -1,4 +1,9 @@
 
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #00050d;
+}
+
 #root {
   background-color: #00050d;
   min-height: 100vh;
@@ -60,6 +65,9 @@ h3 {
 .d-flex {
   display: flex;
   align-items: center;
+  /* justify-content: space-around; */
+  justify-items: center;
+  gap: 8px;
 }
 
 
@@ -82,9 +90,9 @@ h3 {
   padding: 16px;
 }
 
-.container-sm-margin {
-  margin: 32px;
-}
+
+
+
 
 .center {
   display: flex;
@@ -123,3 +131,20 @@ h3 {
   -webkit-box-orient: vertical;
 }
  
+.large-text-center {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;  
+}
+
+.app-container {
+  padding: 16px; 
+  background: #00050d;
+}
+
+@media (max-width: 768px) {
+  .container-sm-margin {
+    margin: 0;
+  }
+}
+

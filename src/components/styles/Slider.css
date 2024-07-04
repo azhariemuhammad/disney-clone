@@ -1,0 +1,49 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  cursor: grab;
+  width: 100%;
+  margin-left: -16px;
+}
+
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 16px;
+  overflow: hidden;
+  padding: 0 16px;
+}
+
+.card-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  height: 100%;
+  align-items: center;
+}
+
+.pagination-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 8px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #e5e5e5;
+}
+
+.pagination-dot.active {
+  width: 40px;
+  border-radius: 16px;
+  padding: 4px;
+  background-color: #007aff;
+}

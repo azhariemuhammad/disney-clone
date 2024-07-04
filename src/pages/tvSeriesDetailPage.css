@@ -1,14 +1,16 @@
+/* episode container should be a grid with 2 columns */
 .episode-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
-  margin: 10px;
-  gap: 16px;
-  margin-bottom: 24px;
-  text-align: left;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
   padding: 16px;
+  gap: 16px;
+  text-align: left;
 }
+
 
 .episode-container:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -25,4 +27,17 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: 500px;
+  text-align: left;
+}
+
+/* episode container should be a grid with 2 rows on mobile */
+@media (max-width: 960px) {
+    .episode-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+        height: 100%;
+    
+    }
 }

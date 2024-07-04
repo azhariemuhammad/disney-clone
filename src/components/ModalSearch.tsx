@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './styles/ModalSearch.css'
-import { Search, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDebounce } from '../hooks/useDebounce'
 
-type ModalProps = {
-  isOpen: boolean
-  onClose: () => void
-}
 type SearchBarProps = {
   onClose: () => void
   onKeyDown: (e: React.KeyboardEvent<HTMLFormElement>) => void
@@ -29,50 +25,20 @@ export const SearchIcon = () => (
   </svg>
 )
 
-export const Modal = ({ isOpen, onClose }: ModalProps) => {
-  if (!isOpen) return null
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
-    if (e.key === 'Escape') {
-      onClose()
-    }
-  }
-
-  return (
-    <div className='modal-overlay'>
-      <div className='modal'>
-        <button className='close-button' onClick={onClose}>
-          ×
-        </button>
-        <div className='modal-content'>
-          <SearchBar onClose={onClose} onKeyDown={handleKeyDown} />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export const SearchBar = ({ onClose, onKeyDown }: SearchBarProps) => {
+export const SearchBar = () => {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
-  console.log({ query })
+
   const queryDebounced = useDebounce(query, 500)
 
-  //   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault()
-  //     onClose()
-  //     navigate(`/search?query=${query}`)
-  //   }
-
   useEffect(() => {
-    console.log({ queryDebounced })
     if (queryDebounced) {
       navigate(`/search?query=${queryDebounced}`)
     }
   }, [queryDebounced])
 
   return (
-    <form className='search-form' onKeyDown={onKeyDown}>
+    <form className='search-form'>
       <input
         type='text'
         value={query}

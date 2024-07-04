@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence, PanInfo, useMotionValue, animate } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
-import { Box, Flex, Grid } from '@chakra-ui/react'
+import './styles/Slider.css'
 
 type Props = {
   children: React.ReactNode
-  width?: string
 }
 
 const transition: any = {
@@ -14,7 +13,7 @@ const transition: any = {
   duration: 3,
 }
 
-export const Slider = ({ children, width }: Props) => {
+export const Slider = ({ children }: Props) => {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const cardBoxRef = React.useRef<HTMLDivElement>(null)
   const items = React.Children.toArray(children)
@@ -60,9 +59,9 @@ export const Slider = ({ children, width }: Props) => {
   }, [activeIndex])
 
   return (
-    <Box pos='relative' flexDirection='column' cursor='grab' ref={containerRef} width='100vw' marginLeft='-16px'>
+    <div className='container' ref={containerRef}>
       <AnimatePresence initial={false} custom={direction}>
-        <Grid gridAutoFlow='column' gap={`${GAP}px`} overflow='hidden' paddingX='16px'>
+        <div className='grid'>
           {React.Children.map(children, (child, index) => (
             <motion.div
               key={index}
@@ -73,36 +72,28 @@ export const Slider = ({ children, width }: Props) => {
               initial='incoming'
               animate='active'
               exit='exit'
-              // disabled animation when items is only 1
+              // Disable animation when items is only 1
               {...(items.length !== 1 ? { drag: 'x' } : {})}
               dragElastic={1}
-              onDragEnd={(_, dragInfo) => dragEndHandler(dragInfo)}
+              onDragEnd={(e, dragInfo) => {
+                e.preventDefault()
+                dragEndHandler(dragInfo)
+              }}
             >
-              <Box w='full' height='100%' left={`${index * 100}%`} right={`${index * 100}%`} ref={cardBoxRef}>
+              <div className='card-box' ref={cardBoxRef}>
                 {child}
-              </Box>
+              </div>
             </motion.div>
           ))}
-        </Grid>
+        </div>
       </AnimatePresence>
       {items.length > 1 && (
-        <Flex justifyContent='center' mt={4} h='100%'>
-          <>
-            {items.map((_, index) => (
-              <Box
-                w={activeIndex === index ? '40px' : '8px'}
-                h='8px'
-                borderRadius={activeIndex === index ? 'lg' : '50%'}
-                m='0px 8px'
-                display='inline-block'
-                cursor='pointer'
-                bg={activeIndex === index ? '#007aff' : '#e5e5e5'}
-                key={index}
-              />
-            ))}
-          </>
-        </Flex>
+        <div className='pagination'>
+          {items.map((_, index) => (
+            <div className={`pagination-dot ${activeIndex === index ? 'active' : ''}`} key={index} />
+          ))}
+        </div>
       )}
-    </Box>
+    </div>
   )
 }

@@ -39,6 +39,7 @@ const TVSeriesContent = ({ children, tvSeries }: TVSeriesContentProps) => {
         <p className='hero-date'>{tvSeries.number_of_seasons} Seasons</p>
         <p className='hero-date'>{tvSeries.number_of_episodes} Episodes</p>
       </div>
+      <p>First air date: {tvSeries.first_air_date}</p>
       <p>Playback time: {tvSeries.episode_run_time?.[0]} Minutes</p>
       <p className='hero-genres'> {tvSeries.genres.map(genre => genre.name).join(', ')}</p>
       {children}
@@ -53,7 +54,7 @@ export const MovieContentDetail = ({ movie, tvSeries }: MovieContentDetailProps)
       {movie && (
         <section
           key={movie.id}
-          style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.poster_path})` }}
+          style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.poster_path})`, width: '100%' }}
         >
           <MovieContent movie={movie}>
             <WatchListButton
@@ -76,7 +77,7 @@ export const MovieContentDetail = ({ movie, tvSeries }: MovieContentDetailProps)
       {tvSeries && (
         <section
           key={tvSeries.id}
-          style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${tvSeries.poster_path})` }}
+          style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${tvSeries.poster_path})`, width: '100%' }}
         >
           <TVSeriesContent tvSeries={tvSeries}>
             <WatchListButton

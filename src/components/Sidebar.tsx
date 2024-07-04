@@ -1,10 +1,5 @@
-import { Link, matchRoutes, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './styles/Sidebar.css'
-import { routes } from '../routes'
-import { useState } from 'react'
-import { Modal } from '@chakra-ui/react'
-import { useAtom } from 'jotai'
-import { modalAtom } from '../atom/modalAtom'
 
 const SearchIcon = () => {
   return (
@@ -71,8 +66,6 @@ const WatchlistIcon = () => {
 }
 
 export const Sidebar = () => {
-  const [isSearchOpen, setIsSearchOpen] = useAtom(modalAtom)
-
   return (
     <>
       <div className='sidebar'>
