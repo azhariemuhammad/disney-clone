@@ -7,7 +7,7 @@ import { WatchListButton } from './WatchlistBtn'
 
 interface MovieHero {
   movies: Array<Movie>
-  width: string
+  width?: string
 }
 
 const PlayButtonIcon = () => {

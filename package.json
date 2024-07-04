@@ -2,12 +2,18 @@
   "name": "react-anime",
   "version": "1.0.0",
   "description": "Anime",
+  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "jest",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"clean": "rm -rf dist",
+		"build": "pnpm run clean && pnpm run build:client && pnpm run build:server",
+		"build:client": "vite build --base=/dist/client --outDir dist/client --ssrManifest",
+		"build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
+		"dev:server": "node dist/server/server.js",
+		"dev:client": "vite",
+		"serve": "NODE_ENV=production node server",
+		"generate": "vite build --outDir dist/static && npm run build:server && node prerender.js",
+		"lint": "eslint . --fix --max-warnings=0"
   },
   "keywords": [],
   "author": "",
@@ -34,7 +40,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -43,6 +50,7 @@
     "@popmotion/popcorn": "^0.4.4",
     "@tanstack/react-query": "^5.39.0",
     "@testing-library/user-event": "^14.5.2",
+    "express": "^4.19.2",
     "framer-motion": "^11.2.12",
     "jotai": "^2.8.4",
     "react-router-dom": "^6.23.1"

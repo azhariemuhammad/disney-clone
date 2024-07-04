@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "types": ["@testing-library/jest-dom", "node"]
   },
-  "include": ["src"]
+  "include": ["src", "server.js"]
 }
