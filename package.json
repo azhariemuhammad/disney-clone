@@ -4,7 +4,7 @@
   "description": "Anime",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
 		"clean": "rm -rf dist",
 		"build": "pnpm run clean && pnpm run build:client && pnpm run build:server",
 		"build:client": "vite build --base=/dist/client --outDir dist/client --ssrManifest",

@@ -40,6 +40,7 @@ export const SearchBar = () => {
   return (
     <form className='search-form'>
       <input
+        role='searchbox'
         type='text'
         value={query}
         onChange={e => {

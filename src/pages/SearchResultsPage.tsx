@@ -22,7 +22,6 @@ function format(query: string) {
 }
 
 export const SearchResultsPage = () => {
-  const navigate = useNavigate()
   const urlParams = new URLSearchParams(window.location.search)
   const query = urlParams.get('query') ?? ''
 
@@ -41,16 +40,12 @@ export const SearchResultsPage = () => {
   const [moviesQuery, tvseriesQuery] = queryResults
 
   const { data: moviesData, isLoading: moviesIsLoading, error: moviesError } = moviesQuery
-  const { data: tvseriesData, isLoading: tvseriesIsLoading, error: tvseriesError } = tvseriesQuery
-
-  //   const movies = data?.results || []
-
-  console.log({ tvseriesData, tvseriesIsLoading, tvseriesError })
+  const { data: tvseriesData } = tvseriesQuery
 
   return (
     <>
       <div className='container container-sm-padding container-sm-margin'>
-        <SearchBar onClose={() => navigate('/')} onKeyDown={e => () => {}} />
+        <SearchBar />
         {moviesIsLoading ? (
           <div className='spinner'></div>
         ) : moviesError ? (

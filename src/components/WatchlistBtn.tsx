@@ -49,7 +49,7 @@ export const WatchListButton = ({ onClick, isWatchedList }: WatchListBtnProps) =
 
   return (
     <>
-      <button className='watchlist-button' onClick={handleClick}>
+      <button data-testid='remove-button' className='watchlist-button' onClick={handleClick}>
         {isWatched ? <MinusIcon /> : <PlusIcon />}
       </button>
     </>
