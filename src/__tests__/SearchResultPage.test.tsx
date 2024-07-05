@@ -23,6 +23,7 @@ vi.mock('react-router-dom', () => ({
   Link: ({ children }) => <a>{children}</a>,
   useNavigate: () => mockUseNavigate,
   useLocation: () => mockUseLocation,
+  useSearchParams: vi.fn(),
 }))
 
 // @ts-ignore
