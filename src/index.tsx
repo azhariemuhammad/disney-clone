@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ChakraProvider } from '@chakra-ui/react'
+import { hydrateRoot } from 'react-dom/client'
 
-const queryClient = new QueryClient()
+import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-root.render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
-    </QueryClientProvider>
-  </React.StrictMode>,
+root.render(<React.StrictMode></React.StrictMode>)
+
+const container = document.getElementById('root')
+hydrateRoot(
+  container,
+  <BrowserRouter>
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  </BrowserRouter>,
 )
