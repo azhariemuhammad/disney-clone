@@ -1,7 +1,7 @@
 {
-  "name": "react-anime",
+  "name": "disney-clone",
   "version": "1.0.0",
-  "description": "Anime",
+  "description": "disney clone",
   "type": "module",
   "scripts": {
     "test": "vitest",

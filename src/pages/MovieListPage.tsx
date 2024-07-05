@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { UseQueryOptions, UseQueryResult, useQueries } from '@tanstack/react-query'
 import { List } from '../components/MovieList'
 import { MovieList } from '../types'
