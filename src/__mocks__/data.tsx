@@ -25,6 +25,33 @@ export const moviesQuery = {
   error: null,
 }
 
+export const moviesAndTvSeriesQuery = {
+  data: {
+    results: [
+      {
+        id: 1,
+        title: 'One piece',
+        poster_path: '/poster_path/movie1.jpg',
+        backdrop_path: '/backdrop_path/movie1.jpg',
+        vote_average: 8.2,
+        overview: 'Overview of movie 1',
+        release_date: '2022-01-01',
+      },
+      {
+        id: 2,
+        title: 'fastest man alive',
+        poster_path: '/poster_path/movie2.jpg',
+        backdrop_path: '/backdrop_path/movie2.jpg',
+        vote_average: 7.8,
+        overview: 'Overview of movie 2',
+        release_date: '2022-02-01',
+      },
+    ],
+  },
+  isLoading: false,
+  error: null,
+}
+
 export const tvSeriesQuery = {
   data: {
     results: [
