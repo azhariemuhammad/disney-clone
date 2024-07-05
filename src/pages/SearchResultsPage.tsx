@@ -1,5 +1,5 @@
 import { UseQueryOptions, UseQueryResult, useQueries } from '@tanstack/react-query'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { tmdbApiKey } from '../config'
 import { List } from '../components/MovieList'
 import { SearchBar } from '../components/ModalSearch'
@@ -22,8 +22,9 @@ function format(query: string) {
 }
 
 export const SearchResultsPage = () => {
-  const urlParams = new URLSearchParams(window.location.search)
-  const query = urlParams.get('query') ?? ''
+  const search = useSearchParams()
+  const q = search?.[0].get('query') ?? ''
+  const query = decodeURIComponent(q)
 
   const queryOptions: UseQueryOptions<MovieList | TVSeriesDetail, Error>[] = [
     {

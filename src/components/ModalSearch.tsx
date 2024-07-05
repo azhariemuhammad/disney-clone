@@ -3,11 +3,6 @@ import './styles/ModalSearch.css'
 import { useNavigate } from 'react-router-dom'
 import { useDebounce } from '../hooks/useDebounce'
 
-type SearchBarProps = {
-  onClose: () => void
-  onKeyDown: (e: React.KeyboardEvent<HTMLFormElement>) => void
-}
-
 export const SearchIcon = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
@@ -33,12 +28,12 @@ export const SearchBar = () => {
 
   useEffect(() => {
     if (queryDebounced) {
-      navigate(`/search?query=${queryDebounced}`)
+      navigate(`/search?query=${encodeURIComponent(queryDebounced)}`)
     }
   }, [queryDebounced])
 
   return (
-    <form className='search-form'>
+    <form onSubmit={e => e.preventDefault()} className='search-form'>
       <input
         role='searchbox'
         type='text'

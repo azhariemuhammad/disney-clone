@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest",
 		"clean": "rm -rf dist",
-		"build": "pnpm run clean && pnpm run build:client && pnpm run build:server",
+		"build": "npm run clean && npm run build:client && npm run build:server",
 		"build:client": "vite build --base=/dist/client --outDir dist/client --ssrManifest",
 		"build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
 		"dev:server": "node dist/server/server.js",
