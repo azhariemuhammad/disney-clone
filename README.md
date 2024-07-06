@@ -1,6 +1,6 @@
 # Movie DB - A Disney Hotstar Clone
 
-Simple disney hotstart app built using React + Typescript + Vite
+Simple disney hotstar app built using React + Typescript + Vite.
 Visit the site [movie-db](https://movie.azhariemuhamad.com)
 
 ## Features
