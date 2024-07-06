@@ -21,7 +21,10 @@ To run server side
 - run `npm run serve`
 
 System Design
-[User] -> [MOVIE DB - Disney Hotstar Clone] -> <- [THE MOVIE DB API]
+
+<img width="1087" alt="Screen Shot 2024-07-06 at 9 22 56 AM" src="https://github.com/azhariemuhammad/disney-clone/assets/19600009/405abc60-3b77-4522-80fb-977c860d5e13">
+
+
 
 ## Pages
 
