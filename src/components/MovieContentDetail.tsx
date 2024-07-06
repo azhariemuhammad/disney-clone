@@ -96,8 +96,6 @@ export const MovieContentDetail = ({ movie, tvSeries }: MovieContentDetailProps)
           </TVSeriesContent>
         </section>
       )}
-
-      {/* //TODO: more like movies */}
     </div>
   )
 }

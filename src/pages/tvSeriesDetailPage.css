@@ -1,4 +1,3 @@
-/* episode container should be a grid with 2 columns */
 .episode-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -30,7 +29,6 @@
   text-align: left;
 }
 
-/* episode container should be a grid with 2 rows on mobile */
 @media (max-width: 960px) {
     .episode-container {
         display: grid;

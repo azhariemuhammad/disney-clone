@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './styles/ModalSearch.css'
 import { useNavigate } from 'react-router-dom'
 import { useDebounce } from '../hooks/useDebounce'
 
-export const SearchIcon = () => (
+const SearchIcon = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='24'

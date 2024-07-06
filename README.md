@@ -11,7 +11,6 @@ Visit the site [movie-db](https://movie.azhariemuhammad.com)
 - Lazy Image 📸
 - SSR ⚡️
 
-
 ## Getting Started
 
 - Clone this repo
@@ -20,11 +19,10 @@ Visit the site [movie-db](https://movie.azhariemuhammad.com)
 
 To run server side
 
-- run `npm run build:client && npm run build:server`
+- run `npm run build`
 - run `npm run serve`
 
 ## System Design
-
 
 <img width="1087" alt="Screen Shot 2024-07-06 at 9 22 56 AM" src="https://github.com/azhariemuhammad/disney-clone/assets/19600009/405abc60-3b77-4522-80fb-977c860d5e13">
 
@@ -35,6 +33,3 @@ To run server side
 - TVSeriesDetails
 - Watchlist
 - Search
-
-
-

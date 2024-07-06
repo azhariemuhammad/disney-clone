@@ -1,11 +1,8 @@
-import { useParams, Link as RouterLink } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { Anime, Movie, MovieDetail, MovieList } from '../types'
+import { MovieDetail } from '../types'
 import { tmdbApiKey } from '../config'
-import { Hero } from '../components/Hero'
 import '../components/styles/Hero.css'
-
-import useWatchList from '../hooks/useWatchList'
 import { MovieContentDetail } from '../components/MovieContentDetail'
 
 const fetchMovieById = async (id: string): Promise<MovieDetail> => {

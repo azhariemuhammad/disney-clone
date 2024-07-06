@@ -1,12 +1,12 @@
-import { MovieContentDetail } from '../components/MovieContentDetail'
-import { Season, TVSeriesDetail } from '../types'
+import { useEffect, useState } from 'react'
 import { useQueries } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
+import { Season, TVSeriesDetail } from '../types'
+import { MovieContentDetail } from '../components/MovieContentDetail'
 import { tmdbApiKey } from '../config'
 import { Tabs, Tab } from '../components/Tab'
-import { useEffect, useState } from 'react'
-import './tvSeriesDetailPage.css'
 import LazyImage from '../components/LazyImage'
+import './tvSeriesDetailPage.css'
 
 const fetchTVseriesById = async (id: string): Promise<TVSeriesDetail> => {
   const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${tmdbApiKey}`)

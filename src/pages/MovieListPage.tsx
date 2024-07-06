@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { UseQueryOptions, UseQueryResult, useQueries } from '@tanstack/react-query'
 import { List } from '../components/MovieList'
 import { MovieList } from '../types'
@@ -51,7 +50,7 @@ export const MovieListPage = () => {
       ) : (
         <>
           <div className='hero-container hero-container-sm-padding hero-container-sm-margin'>
-            <Hero movies={moviesAndTvs || {}} />
+            <Hero movies={moviesAndTvs} />
           </div>
           <section>
             <div className='movie-list'>
