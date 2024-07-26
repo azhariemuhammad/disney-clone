@@ -26,7 +26,7 @@ export const MovieListPage = () => {
   const [moviesAndTvSeries, moviesQuery, tvSeriesQuery] = queryResults
   const moviesAndTvs = moviesAndTvSeries?.data?.results || []
   const movies = moviesQuery?.data?.results || []
-  const moviesIsLoading = moviesQuery?.isLoading
+  const moviesIsLoading = false
   const moviesError = moviesQuery?.error
   const tvSeries = tvSeriesQuery?.data?.results || []
 
