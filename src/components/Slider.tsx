@@ -23,7 +23,7 @@ export const Slider = ({ children }: Props) => {
   const motionValue = useMotionValue(0)
   const activeIndex = wrap(0, items.length, imageCount)
   const clientW = Number(cardBoxRef.current?.clientWidth ?? 0) + GAP
-  const xPosition = (clientW / window.innerWidth) * 100 - GAP * 2
+  const xPosition = typeof window !== 'undefined' ? (clientW / window.innerWidth) * 100 - GAP * 2 : 0
   const calculateNewX = () => -(activeIndex * clientW) + (activeIndex > 0 ? xPosition / 2 : 0)
 
   const swipeTo = (swipeDirection: number) => {

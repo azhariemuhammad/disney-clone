@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import express from 'express';
-
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { createServer as createViteServer } from 'vite';
 import path from 'path';
 
@@ -49,25 +49,48 @@ async function createServer(
 	const stylesheets = getStyleSheets();
 
 	app.get('*', async (req, res) => {
+	
 		try {
 			const url = req.originalUrl;
 			let template = await fs.readFile('dist/client/index.html', 'utf-8');
+			const queryClient = new QueryClient({
+				defaultOptions: {
+				  queries: {
+					staleTime: 60 * 1000,
+				  },
+				},
+			});
+			const { fetchMovies, movieParams, topRatedMovies, topRatedAll } = await vite.ssrLoadModule('/src/lib/fetcher.ts');
 
+			
+			await Promise.all([await queryClient.prefetchQuery(
+				{
+					queryKey: ['moviesAndTvSeries'],
+					queryFn: () => fetchMovies(`${topRatedAll}${movieParams}`),
+				  },
+			), await queryClient.prefetchQuery(
+				{
+					queryKey: ['movies'],
+					queryFn: () => fetchMovies(`${topRatedMovies}${movieParams}`),
+				  },
+			), await queryClient.prefetchQuery(
+				{
+					queryKey: ['tvSeries'],
+					queryFn: () => fetchMovies(`${topRatedTvSeries}${movieParams}`),
+				  },
+			)]);
+			
+			const dehydratedState = dehydrate(queryClient);
+		
 			template = await vite.transformIndexHtml(url, template);
 			const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
 
-			const context = {};
-			const appHtml = render(url, context);
+			const appHtml = render(url, context, queryClient, dehydratedState);
 
-			if (context.url) {
-				// Somewhere a `<Redirect>` was rendered
-				return res.redirect(301, context.url);
-			}
-
-			const cssAssets = isProd ? '' : await stylesheets;
+			const cssAssets =  await stylesheets;
 			const html = template
 				.replace(`App is loading...`, appHtml)
-				.replace('<!--head-->', cssAssets);
+				.replace('<!--head-->', `${cssAssets}\n<script>window.__REACT_QUERY_STATE__ = ${JSON.stringify(dehydratedState).replace(/</g, '\\u003c')}</script>`);
 
 			res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {

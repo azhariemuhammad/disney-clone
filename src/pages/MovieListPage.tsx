@@ -2,33 +2,22 @@ import { UseQueryOptions, UseQueryResult, useQueries } from '@tanstack/react-que
 import { List } from '../components/MovieList'
 import { MovieList } from '../types'
 import { Hero } from '../components/Hero'
-import { tmdbApiKey } from '../config'
 import './movieListPage.css'
-
-const topRatedAll = `https://api.themoviedb.org/3/trending/all/day?`
-const topRatedMovies = `https://api.themoviedb.org/3/movie/top_rated?`
-const topRatedTvSeries = `https://api.themoviedb.org/3/tv/top_rated?`
-const params = `&include_adult=false&include_video=true&language=en-US&page=1&api_key=${tmdbApiKey}`
-
-const fetchMovies = async (url: string): Promise<MovieList> => {
-  const response = await fetch(url)
-  const data = await response.json()
-  return data
-}
+import { fetchMovies, movieParams, topRatedAll, topRatedMovies, topRatedTvSeries } from '../lib/fetcher'
 
 export const MovieListPage = () => {
   const queryOptions: UseQueryOptions<MovieList, Error>[] = [
     {
       queryKey: ['moviesAndTvSeries'],
-      queryFn: () => fetchMovies(`${topRatedAll}${params}`),
+      queryFn: () => fetchMovies(`${topRatedAll}${movieParams}`),
     },
     {
       queryKey: ['movies'],
-      queryFn: () => fetchMovies(`${topRatedMovies}${params}`),
+      queryFn: () => fetchMovies(`${topRatedMovies}${movieParams}`),
     },
     {
       queryKey: ['tvSeries'],
-      queryFn: () => fetchMovies(`${topRatedTvSeries}${params}`),
+      queryFn: () => fetchMovies(`${topRatedTvSeries}${movieParams}`),
     },
   ]
 
