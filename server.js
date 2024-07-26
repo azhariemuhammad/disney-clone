@@ -85,7 +85,7 @@ async function createServer(
 			template = await vite.transformIndexHtml(url, template);
 			const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
 
-			const appHtml = render(url, context, queryClient, dehydratedState);
+			const appHtml = render(url, queryClient, dehydratedState);
 
 			const cssAssets =  await stylesheets;
 			const html = template

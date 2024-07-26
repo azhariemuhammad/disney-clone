@@ -7,10 +7,9 @@ import { StaticRouter } from 'react-router-dom/server'
 
 import App from './App'
 
-export function render(url: string, context: Record<string, unknown>, queryClient: QueryClient, dehydratedState: any) {
-  console.log('entry-server', dehydratedState)
+export function render(url: string, queryClient: QueryClient, dehydratedState: any) {
   return ReactDOMServer.renderToString(
-    <StaticRouter location={url} context={context}>
+    <StaticRouter location={url}>
       <QueryClientProvider client={queryClient}>
         <HydrationBoundary state={dehydratedState}>
           <ChakraProvider>
